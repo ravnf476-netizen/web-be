@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Girlfriend Again?</title>
+
+<style>
+body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:Arial;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow:hidden;
+}
+
+h1 {
+    color:white;
+    text-align:center;
+    margin-bottom:30px;
+    padding:0 10px;
+}
+
+.container {
+    position:relative;
+    width:320px;
+    height:180px;
+}
+
+button {
+    padding:15px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    position:absolute;
+    transition:0.2s;
+}
+
+#yes {
+    background:#4CAF50;
+    color:white;
+    left:40px;
+    top:60px;
+}
+
+#no {
+    background:#f44336;
+    color:white;
+    left:170px;
+    top:60px;
+}
+
+#msg {
+    display:none;
+    margin-top:20px;
+    font-size:24px;
+    color:white;
+}
+
+/* Mobile touch improvement */
+@media(max-width:480px){
+    .container{
+        width:260px;
+        height:160px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you be my girlfriend AGAIN?? 💖</h1>
+
+<div class="container">
+    <button id="yes">Yes 💕</button>
+    <button id="no">No 😢</button>
+</div>
+
+<div id="msg">I knew you would say YES 😍💖</div>
+
+<!-- Music (hidden iframe) -->
+<iframe id="music" width="0" height="0"
+src="https://www.youtube.com/embed/8CEJoCr_9UI?enablejsapi=1"
+frameborder="0"></iframe>
+
+<script>
+const noBtn = document.getElementById("no");
+const container = document.querySelector(".container");
+
+// Desktop hover
+noBtn.addEventListener("mouseover", moveButton);
+
+// Mobile touch
+noBtn.addEventListener("touchstart", moveButton);
+
+function moveButton(){
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    noBtn.style.left = Math.random()*maxX + "px";
+    noBtn.style.top = Math.random()*maxY + "px";
+}
+
+// YES click
+document.getElementById("yes").onclick = () => {
+    document.getElementById("msg").style.display = "block";
+
+    // Play music after click (mobile works)
+    let music = document.getElementById("music");
+    music.src += "&autoplay=1";
+};
+</script>
+
+</body>
+</html>
